@@ -1,6 +1,5 @@
 const User = require('../Schemas/userSchema');
 const { faker } = require('@faker-js/faker');
-const mongoose = require('mongoose');
 
 async function seedDB() {
   try {

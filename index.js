@@ -5,6 +5,7 @@ const config = require('./config/config');
 const express = require('express');
 const mongoose = require('mongoose');
 const seedDB = require('./utilities/seedDB');
+const userRoutes = require('./routes/userRoutes');
 const app = express();
 
 // midlewares
@@ -20,6 +21,8 @@ mongoose
   .catch((err) => console.log(err));
 
 seedDB();
+
+app.use('/user', userRoutes);
 
 // initiate the server
 const server = http.createServer(app);
