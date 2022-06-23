@@ -1,12 +1,23 @@
 const User = require('../Schemas/userSchema');
 const getAllUsers = async (req, res) => {
   try {
-    let { page } = req.query;
+    let { page, filter, sortType } = req.query;
     const size = 10;
     let count = await User.count();
 
     let users = []; // all the available users for specific page will be stored here
-    if (page) {
+    if (page && filter && sortType) {
+      users = await User.find({ city: filter })
+        .sort({
+          city: sortType, // sort with ascending or descending depend on query
+        })
+        .skip(parseInt(page) * parseInt(size))
+        .limit(parseInt(size)); // send users with pagination
+    } else if (page && filter) {
+      users = await User.find({ city: filter })
+        .skip(parseInt(page) * parseInt(size))
+        .limit(parseInt(size)); // send users with pagination
+    } else if (page) {
       users = await User.find()
         .skip(parseInt(page) * parseInt(size))
         .limit(parseInt(size)); // send users with pagination
