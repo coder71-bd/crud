@@ -34,6 +34,7 @@ const getAllUsers = async (req, res) => {
     console.log(error.message);
   }
 };
+
 const createUser = async (req, res) => {
   try {
     const userData = req.body;
@@ -47,6 +48,7 @@ const createUser = async (req, res) => {
     console.log(error.message);
   }
 };
+
 const updateUser = async (req, res) => {
   try {
     const { id } = req.query; // use the id to update the user
@@ -64,6 +66,7 @@ const updateUser = async (req, res) => {
     console.log(error.message);
   }
 };
+
 const getUserById = async (req, res) => {
   try {
     const { id } = req.query;
