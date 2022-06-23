@@ -4,6 +4,7 @@ const cors = require('cors');
 const config = require('./config/config');
 const express = require('express');
 const mongoose = require('mongoose');
+const seedDB = require('./utilities/seedDB');
 const app = express();
 
 // midlewares
@@ -18,6 +19,8 @@ mongoose
   .then(() => console.log('connection successfull'))
   .catch((err) => console.log(err));
 
+seedDB();
+
 // initiate the server
 const server = http.createServer(app);
 
@@ -29,3 +32,5 @@ app.get('/', (req, res) => {
 server.listen(config.PORT, () => {
   console.log('server is running in localhost:', config.PORT);
 });
+
+module.exports = app;
